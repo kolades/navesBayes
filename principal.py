@@ -48,9 +48,9 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
 
-train_est_y = model.predict(train_x)
+#train_est_y = model.predict(train_x)
 
-mat = confusion_matrix(train_y, train_est_y)
+#mat = confusion_matrix(train_y, train_est_y)
 #sns.heatmap(mat.T, square=True, annot=True, fmt='d', cbar=False, xticklabels=labels, yticklabels=labels)
 #plt.xlabel('Real')
 #plt.ylabel('Estimado');
