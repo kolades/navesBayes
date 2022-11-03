@@ -1,4 +1,3 @@
-from sklearn.ensemble import RandomForestClassifier #importa o codigo para gerar florestas randomicas
 import pandas as pd #manipulacao de dados
 
 ###################importando os dados do csv ########################
@@ -16,15 +15,16 @@ features.pop('Id')
 #print(features)
 print("Classes separada")
 
-############# quebrar os dados em teste e treino #####################
-from sklearn.model_selection import train_test_split
+#######[2.1] Formação dos conjuntos de treinamento e teste ##########
+#import pandas as pd
 import numpy as np
+from sklearn.model_selection import train_test_split
 
 data = np.array(dados)
 
 data = data[:, 1:] # remover essa linha caso a primeira coluna corresponda a dados relevantes
 
-################# Indentificando os rótulos das classes ###############
+# Indentificando os rótulos das classes
 labels = []
 for line in range(data.shape[0]):
   if(labels.count(data[line, data.shape[1]-1])==0):
@@ -33,30 +33,32 @@ for line in range(data.shape[0]):
 y = np.array(data[:, data.shape[1]-1])
 x = (data[:, :(data.shape[1]-1)]).astype(np.float32)
 
-########### Gerando os conjuntos de treinamento e teste (validação) ################
+# Gerando os conjuntos de treinamento e teste (validação)
 train_x, test_x, train_y, test_y = train_test_split(x,y, test_size=0.25) # 0.25 dos dados no conjunto de teste
 
 print('Conjuntos de treinamento e teste separados!')
 
-############ Formação dos conjuntos de treinamento e teste #########################
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
+########### [3] Ajuste do modelo para classes com distribuição gaussiana #################
+from sklearn.naive_bayes import GaussianNB
+model = GaussianNB()
 
-data = np.array(dados)
+model.fit(train_x, train_y)
+print('Modelo Ajustado!')
 
-data = data[:, 1:] # remover essa linha caso a primeira coluna corresponda a dados relevantes
+# [4] Matriz de confusão para o conjunto de treinamento
+%matplotlib inline
+import matplotlib.pyplot as plt
+import seaborn as sns; sns.set()
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
+from sklearn.metrics import accuracy_score
 
-######### Indentificando os rótulos das classes ############
-labels = []
-for line in range(data.shape[0]):
-  if(labels.count(data[line, data.shape[1]-1])==0):
-    labels.append(data[line, data.shape[1]-1])
+train_est_y = model.predict(train_x)
 
-y = np.array(data[:, data.shape[1]-1])
-x = (data[:, :(data.shape[1]-1)]).astype(np.float32)
+mat = confusion_matrix(train_y, train_est_y)
+sns.heatmap(mat.T, square=True, annot=True, fmt='d', cbar=False, xticklabels=labels, yticklabels=labels)
+plt.xlabel('Real')
+plt.ylabel('Estimado');
 
-############ Gerando os conjuntos de treinamento e teste (validação) ################
-train_x, test_x, train_y, test_y = train_test_split(x,y, test_size=0.25) # 0.25 dos dados no conjunto de teste
-
-print('Conjuntos de treinamento e teste separados!')
+print(classification_report(train_y, train_est_y)) # mostra relatório
+print('A acurácia é ',accuracy_score(train_est_y, train_y)) # exibe acurácia
