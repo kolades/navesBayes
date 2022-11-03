@@ -46,7 +46,7 @@ model.fit(train_x, train_y)
 print('Modelo Ajustado!')
 
 # [4] Matriz de confusão para o conjunto de treinamento
-%matplotlib inline
+#%matplotlib inline
 import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 from sklearn.metrics import confusion_matrix
