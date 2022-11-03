@@ -3,7 +3,7 @@ import pandas as pd #manipulacao de dados
 
 ###################importando os dados do csv ########################
 
-dados = pd.read_csv('/content/drive/MyDrive/Inteligência Artificial/Florista Iris/Iris.csv')
+dados = pd.read_csv('Iris.csv')
 
 ##############separar as classes das features  #######################
 
