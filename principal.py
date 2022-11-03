@@ -12,11 +12,8 @@ tamanho = len(nomesColunas)#quantos nomes tem
 nomesColunas = nomesColunas[:tamanho-1]#retira o ultimo
 features = dados[nomesColunas]#monta o features
 features.pop('Id') 
-#print(features)
-print("Classes separada")
 
 #######[2.1] Formação dos conjuntos de treinamento e teste ##########
-#import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 
@@ -36,14 +33,11 @@ x = (data[:, :(data.shape[1]-1)]).astype(np.float32)
 # Gerando os conjuntos de treinamento e teste (validação)
 train_x, test_x, train_y, test_y = train_test_split(x,y, test_size=0.25) # 0.25 dos dados no conjunto de teste
 
-print('Conjuntos de treinamento e teste separados!')
-
 ########### [3] Ajuste do modelo para classes com distribuição gaussiana #################
 from sklearn.naive_bayes import GaussianNB
 model = GaussianNB()
 
 model.fit(train_x, train_y)
-print('Modelo Ajustado!')
 
 # [4] Matriz de confusão para o conjunto de treinamento
 #%matplotlib inline
@@ -56,9 +50,9 @@ from sklearn.metrics import accuracy_score
 train_est_y = model.predict(train_x)
 
 mat = confusion_matrix(train_y, train_est_y)
-sns.heatmap(mat.T, square=True, annot=True, fmt='d', cbar=False, xticklabels=labels, yticklabels=labels)
-plt.xlabel('Real')
-plt.ylabel('Estimado');
+#sns.heatmap(mat.T, square=True, annot=True, fmt='d', cbar=False, xticklabels=labels, yticklabels=labels)
+#plt.xlabel('Real')
+#plt.ylabel('Estimado');
 
 print(classification_report(train_y, train_est_y)) # mostra relatório
 print('A acurácia é ',accuracy_score(train_est_y, train_y)) # exibe acurácia
