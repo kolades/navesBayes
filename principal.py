@@ -1,3 +1,4 @@
+import streamlit as st
 import pandas as pd #manipulacao de dados
 
 ###################importando os dados do csv ########################
@@ -56,3 +57,12 @@ mat = confusion_matrix(train_y, train_est_y)
 
 print(classification_report(train_y, train_est_y)) # mostra relatório
 print('A acurácia é ',accuracy_score(train_est_y, train_y)) # exibe acurácia
+
+st.title('Aplicativo de IA')
+SepalLengthCm = st.number_input('Digite o comprimento do caule')
+SepalWidthCm = st.number_input('Digite a largura do caule')
+PetalLengthCm = st.number_input('Digite o comprimento da petala')
+PetalWidthCm = st.number_input('Digite a largura da petala')
+if st.button('Clique aqui'):
+  resultado = floresta.predict([[SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm]])
+  st.write('Resultado:',resultado)
