@@ -1,33 +1,62 @@
-import streamlit as st
+from sklearn.ensemble import RandomForestClassifier #importa o codigo para gerar florestas randomicas
+import pandas as pd #manipulacao de dados
 
-from sklearn.ensemble import RandomForestClassifier 
-import pandas as pd
-dados = pd.read_csv('Iris.csv')
+###################importando os dados do csv ########################
+
+dados = pd.read_csv('/content/drive/MyDrive/Inteligência Artificial/Florista Iris/Iris.csv')
+
+##############separar as classes das features  #######################
 
 classes = dados['Species']
 nomesColunas = dados.columns.to_list()
-tamanho = len(nomesColunas)
-nomesColunas = nomesColunas[1:tamanho-1]
-features = dados[nomesColunas]
+tamanho = len(nomesColunas)#quantos nomes tem
+nomesColunas = nomesColunas[:tamanho-1]#retira o ultimo
+features = dados[nomesColunas]#monta o features
+features.pop('Id') 
+#print(features)
+print("Classes separada")
 
+############# quebrar os dados em teste e treino #####################
+from sklearn.model_selection import train_test_split
+import numpy as np
+
+data = np.array(dados)
+
+data = data[:, 1:] # remover essa linha caso a primeira coluna corresponda a dados relevantes
+
+################# Indentificando os rótulos das classes ###############
+labels = []
+for line in range(data.shape[0]):
+  if(labels.count(data[line, data.shape[1]-1])==0):
+    labels.append(data[line, data.shape[1]-1])
+
+y = np.array(data[:, data.shape[1]-1])
+x = (data[:, :(data.shape[1]-1)]).astype(np.float32)
+
+########### Gerando os conjuntos de treinamento e teste (validação) ################
+train_x, test_x, train_y, test_y = train_test_split(x,y, test_size=0.25) # 0.25 dos dados no conjunto de teste
+
+print('Conjuntos de treinamento e teste separados!')
+
+############ Formação dos conjuntos de treinamento e teste #########################
+import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
 
-features_treino,features_teste,classes_treino,classes_teste = train_test_split(features,
-                                                                               classes,
-                                                                               test_size=0.26,
-                                                                               random_state=3)
+data = np.array(dados)
 
-floresta = RandomForestClassifier(n_estimators=90) 
+data = data[:, 1:] # remover essa linha caso a primeira coluna corresponda a dados relevantes
 
-floresta.fit(features_treino,classes_treino)
-predicoes = floresta.predict(features_teste)
+######### Indentificando os rótulos das classes ############
+labels = []
+for line in range(data.shape[0]):
+  if(labels.count(data[line, data.shape[1]-1])==0):
+    labels.append(data[line, data.shape[1]-1])
 
+y = np.array(data[:, data.shape[1]-1])
+x = (data[:, :(data.shape[1]-1)]).astype(np.float32)
 
-st.title('Aplicativo de IA')
-SepalLengthCm = st.number_input('Digite o comprimento do caule')
-SepalWidthCm = st.number_input('Digite a largura do caule')
-PetalLengthCm = st.number_input('Digite o comprimento da petala')
-PetalWidthCm = st.number_input('Digite a largura da petala')
-if st.button('Clique aqui'):
-  resultado = floresta.predict([[SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm]])
-  st.write('Resultado:',resultado)
+############ Gerando os conjuntos de treinamento e teste (validação) ################
+train_x, test_x, train_y, test_y = train_test_split(x,y, test_size=0.25) # 0.25 dos dados no conjunto de teste
+
+print('Conjuntos de treinamento e teste separados!')
