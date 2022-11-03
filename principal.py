@@ -41,12 +41,10 @@ model = GaussianNB()
 model.fit(train_x, train_y)
 
 # [4] Matriz de confusão para o conjunto de treinamento
-#%matplotlib inline
-#import matplotlib.pyplot as plt
-import seaborn as sns; sns.set()
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import classification_report
-from sklearn.metrics import accuracy_score
+#import seaborn as sns; sns.set()
+#from sklearn.metrics import confusion_matrix
+#from sklearn.metrics import classification_report
+#from sklearn.metrics import accuracy_score
 
 #train_est_y = model.predict(train_x)
 
