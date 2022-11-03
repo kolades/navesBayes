@@ -42,7 +42,7 @@ model.fit(train_x, train_y)
 
 # [4] Matriz de confusão para o conjunto de treinamento
 #%matplotlib inline
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
@@ -55,10 +55,10 @@ mat = confusion_matrix(train_y, train_est_y)
 #plt.xlabel('Real')
 #plt.ylabel('Estimado');
 
-print(classification_report(train_y, train_est_y)) # mostra relatório
-print('A acurácia é ',accuracy_score(train_est_y, train_y)) # exibe acurácia
+#print(classification_report(train_y, train_est_y)) # mostra relatório
+#print('A acurácia é ',accuracy_score(train_est_y, train_y)) # exibe acurácia
 
-st.title('Aplicativo de IA')
+st.title('Aplicativo Naves de IA')
 SepalLengthCm = st.number_input('Digite o comprimento do caule')
 SepalWidthCm = st.number_input('Digite a largura do caule')
 PetalLengthCm = st.number_input('Digite o comprimento da petala')
