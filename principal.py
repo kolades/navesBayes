@@ -42,7 +42,7 @@ model = GaussianNB()
 model.fit(train_x, train_y)
 
 #st.title('           Aplicativo Naives de IA')
-st.markdown("<h1 style='text-align: center; color: green;'>Aplicativo Naives de IA</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: green;'>Aplicativo IA - Naives Bayes</h1>", unsafe_allow_html=True)
 SepalLengthCm = st.number_input('Digite o comprimento do caule')
 SepalWidthCm = st.number_input('Digite a largura do caule')
 PetalLengthCm = st.number_input('Digite o comprimento da petala')
