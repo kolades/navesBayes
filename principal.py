@@ -37,7 +37,6 @@ train_x, test_x, train_y, test_y = train_test_split(x,y, test_size=0.25) # 0.25 
 ########### [3] Ajuste do modelo para classes com distribuição gaussiana #################
 from sklearn.naive_bayes import GaussianNB
 model = GaussianNB()
-from PIL import Image
 
 
 model.fit(train_x, train_y)
@@ -51,7 +50,12 @@ if st.button('Clique aqui'):
   resultado = model.predict([[SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm]])
   st.write('Resultado:',resultado)
   if resultado == "Iris-versicolor":
-    image = Image.open('sunrise.jpg')
-    st.image(image, caption='Sunrise by the mountains')
+    st.image("Iris-versicolor.jpg')
+  
+  if resultado == "Iris-setosa":
+    st.image("Iris-setosa.jpg')
+  
+  if resultado == "Iris-virginica":
+    st.image("Iris-virginica.jpg')
   
   
