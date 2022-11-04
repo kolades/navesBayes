@@ -50,7 +50,7 @@ PetalWidthCm = st.number_input('Digite a largura da petala')
 if st.button('Clique aqui'):
   resultado = model.predict([[SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm]])
   st.write('Resultado:',resultado)
-  if resultatto == "Iris-versicolor":
+  if resultado == "Iris-versicolor":
     image = Image.open('sunrise.jpg')
     st.image(image, caption='Sunrise by the mountains')
   
