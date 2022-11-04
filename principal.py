@@ -41,7 +41,7 @@ model = GaussianNB()
 
 model.fit(train_x, train_y)
 
-st.title('Aplicativo Naves de IA')
+st.title('           Aplicativo Naves de IA')
 SepalLengthCm = st.number_input('Digite o comprimento do caule')
 SepalWidthCm = st.number_input('Digite a largura do caule')
 PetalLengthCm = st.number_input('Digite o comprimento da petala')
