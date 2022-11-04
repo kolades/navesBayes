@@ -52,14 +52,14 @@ if st.button('Clique aqui'):
  
   if resultado == "Iris-versicolor":
    st.write("Iris-versicolor")
-   st.image("Iris-versicolor.jpg')
+   st.image("Iris-versicolor.jpg")
   
   if resultado == "Iris-setosa":
    st.write("Iris-setosa")
-   st.image("Iris-setosa.jpg')
+   st.image("Iris-setosa.jpg")
   
  if resultado == "Iris-virginica":
   st.write("Iris-virginica")
-  st.image("Iris-virginica.jpg')
+  st.image("Iris-virginica.jpg")
   
   
