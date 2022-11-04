@@ -48,7 +48,7 @@ PetalLengthCm = st.number_input('Digite o comprimento da petala')
 PetalWidthCm = st.number_input('Digite a largura da petala')
 if st.button('Clique aqui'):
   resultado = model.predict([[SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm]])
-  st.write('Resultado:',resultado)
+  #st.write('Resultado:',resultado)
  
   if resultado == "Iris-versicolor":
    st.write("Iris-versicolor")
